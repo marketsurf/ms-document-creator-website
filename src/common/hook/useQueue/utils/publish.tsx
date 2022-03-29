@@ -15,17 +15,19 @@ interface NetworkUrl {
   homestead: string;
   ropsten: string;
   rinkeby: string;
+  fuji: string;
 }
 
 const getReservedStorageUrl = async (
   documentStorage: DocumentStorage,
-  network: "homestead" | "ropsten" | "rinkeby"
+  network: "homestead" | "ropsten" | "rinkeby" | "fuji"
 ): Promise<ActionsUrlObject> => {
   const queueNumber = await getQueueNumber(documentStorage);
   const networkUrl = {
     homestead: "https://tradetrust.io/",
     ropsten: "https://dev.tradetrust.io/",
     rinkeby: "https://rinkeby.tradetrust.io/",
+    fuji: "https://dev.tradetrust.io/",
   } as NetworkUrl;
 
   const qrUrlObj = {

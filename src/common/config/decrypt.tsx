@@ -65,7 +65,15 @@ export const decryptWalletOrSigner = async (
   progressCallback: (progress: number) => void
 ): Promise<Wallet | ConnectedSigner> => {
   const provider =
-    config.network === "local" ? new providers.JsonRpcProvider() : utils.generateProvider({ network: config.network });
+    config.network === "local"
+      ? new providers.JsonRpcProvider()
+      : config.network === "fuji"
+      ? utils.generateProvider({
+          network: config.network,
+          url: "https://api.avax-test.network/ext/bc/C/rpc",
+          providerType: "jsonrpc",
+        })
+      : utils.generateProvider({ network: config.network });
   if (isWalletOption(config.wallet)) {
     // For backward compatibility when the wallet is still string
     return decryptEncryptedJson(config.wallet, password, progressCallback, provider);

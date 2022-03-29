@@ -73,6 +73,7 @@ export const useQueue = ({
       const pendingJobs = new Set(processingJobs.map((job, index) => index));
       setPendingJobIndex(Array.from(pendingJobs));
       setQueueState(QueueState.PENDING);
+
       const allJobs = processingJobs.map(async (job, index) => {
         try {
           if (queueType === QueueType.ISSUE) {

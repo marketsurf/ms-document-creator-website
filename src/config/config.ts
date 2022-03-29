@@ -30,5 +30,6 @@ export const getGSNRelayConfig = (networkId?: string): GsnRelayConfig => {
 export const getHttpProviderUri = (networkId: string): string => {
   if (networkId === "local") return `http://localhost:8545`;
   if (networkId === "homestead") return `https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}`;
+  if (networkId === "fuji") return `https://api.avax-test.network/ext/bc/C/rpc`;
   return `https://${networkId}.infura.io/v3/${INFURA_PROJECT_ID}`;
 };
